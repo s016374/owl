@@ -1,0 +1,55 @@
+<div class="col-md-12">
+  <div class="agent-settings">
+    <ul class="nav nav-pills nav-stacked">
+      <h2>
+        <%= @project.title %> Details
+      </h2>
+      <hr>
+      <p>
+        <b>Last Check:</b>
+        <%= @project.updated_at.strftime("%y-%m-%d %k:%M:%S") %>
+      </p>
+      <p>
+        <b>status:</b>
+        <b class="<%= @project.status.include?('Healthy') ? 'dgg-green' : 'dgg-red' %>" ><%= @project.status %></b>
+      </p>
+      <hr>
+      <p>
+        <b>Schedule:</b>
+        <%= @project.schedule %>
+      </p>
+      <p>
+        <b>QA:</b>
+        <%= @project.qa %>
+      </p>
+      <p>
+        <b>Active:</b>
+        <b class="<%= @project.active == 1 ? 'dgg-orange' : 'dgg-gray' %>" ><%= @project.active == 1 ? 'Running' : 'Stop' %></b>
+      </p>
+      <p>
+        <b>Description:</b>
+        <%= @project.description %>
+      </p>
+    </ul>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group">
+        <%= link_to icon_tag('glyphicon-chevron-left') + ' Back', projects_path, class: "btn btn-default" %>
+        <%= link_to icon_tag('glyphicon-triangle-right') + ' Run All Scenarios', go_project_scenarios_path(@project), class: "btn btn-default" %>
+        <%= link_to icon_tag('glyphicon-menu-hamburger') + ' Cases', project_scenarios_path(@project), class: "btn btn-default" %>
+        <% if policy(current_user).edit? %>
+          <%= link_to icon_tag('glyphicon-asterisk') + ' Edit', edit_project_path(@project), class: "btn btn-default" %>
+        <% end %>
+        <% if policy(current_user).active? %>
+          <% if @project.active == 1 %>
+            <%= link_to icon_tag('glyphicon-stop') + ' Deactive', deactive_project_path(@project), class: "btn btn-default" %>
+          <% else %>
+            <%= link_to icon_tag('glyphicon-time') + ' Active', active_project_path(@project), class: "btn btn-default" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

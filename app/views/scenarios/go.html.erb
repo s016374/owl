@@ -1,0 +1,19 @@
+<div class="col-md-12">
+  <div class="agent-settings">
+    <ul class="nav nav-pills nav-stacked">
+      <h2>
+        <%= @project.title %> # ALL cases Result
+      </h2>
+      <hr>
+      <%= render partial: 'scenarios/result', locals: {rs: @results} %>
+    </ul>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group">
+        <%= link_to icon_tag('glyphicon-ok-circle') + ' Done', project_scenarios_path, class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+</div>

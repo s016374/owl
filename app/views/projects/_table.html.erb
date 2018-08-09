@@ -1,0 +1,57 @@
+<div class="table">
+  <table class="table table-striped">
+    <tr>
+      <!-- TODO sort by <th>-->
+      <th>
+        <a href="#">Title</a>
+      </th>
+      <th>
+        <a >Monitor</a>
+      </th>
+      <th>
+        <a >Schedule</a>
+      </th>
+      <th>
+        <a href="#">Last Check</a>
+      </th>
+      <th>
+        <a href="#">Status</a>
+      </th>
+      <th></th>
+    </tr>
+    <% projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.title, project_path(project) %></td>
+        <td class="<%= project.active == 1 ? 'dgg-orange' : 'dgg-gray' %>" ><%= project.active == 1 ? 'Running' : 'Stop' %></td>
+        <td><%= project.schedule %></td>
+        <td><%= project.updated_at.strftime("%y-%m-%d %k:%M:%S") %></td>
+        <td class="<%= project.status.include?('Healthy') ? 'dgg-green' : 'dgg-red' %>" ><%= project.status %></td>
+        <td align="center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-th-list"></span>
+              Actions
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><%= link_to 'Cases', project_scenarios_path(project) %></li>
+              <% if policy(current_user).active? %>
+                <% if project.active == 1 %>
+                  <li><%= link_to 'Deactive', deactive_project_path(project) %></li>
+                <% else %>
+                  <li><%= link_to 'Active', active_project_path(project) %></li>
+                <% end %>
+              <% end %>
+              <% if policy(current_user).edit? %>
+                <li><%= link_to 'Edit', edit_project_path(project) %></li>
+              <% end %>
+              <% if policy(current_user).destroy? %>
+                <li><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              <% end %>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    <%= paginate projects %>
+  </table>
+</div>

@@ -1,0 +1,27 @@
+<% rs.each do |result| %>
+  <h3 class="<%= result[2].include?('Pass') ? 'dgg-green' : 'dgg-red' %>">
+    <b>project:</b>
+    <%= result[0] %>
+    #
+    <b>case:</b>
+    <%= result[1] %>
+    :
+    <%= result[2] %>
+  </h3>
+  <% if result[3] == 'HTTPError' %>
+    <p>
+      <b>status:</b>
+      Fail ( Timeout/Others )
+    </p>
+  <% else %>
+    <p>
+      <b>status:</b>
+      <%= result[3].status %>
+    </p>
+    <p>
+      <b>body:</b>
+      <%= result[3].body %>
+    </p>
+  <% end %>
+
+<% end %>

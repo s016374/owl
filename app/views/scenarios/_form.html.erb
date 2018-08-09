@@ -1,0 +1,53 @@
+<div class="agent-settings">
+  <div class="col-md-12">
+    <div class="form-group col-md-6 ">
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, :class => 'form-control' %>
+      </div>
+      <div class="form-group hide">
+        <%= f.label :project_id %>
+        <%= f.text_field :project_id, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :url %>
+        <%= f.text_field :url, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :headers %>
+        <%= f.text_field :headers, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :method %>
+        <%= f.text_field :method, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :body %>
+        <%= f.text_field :body, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :cookies %>
+        ( Default: ceshi2 , ****** )
+        <%= f.text_field :cookies, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :expected_status %>
+        ( regex )
+        <%= f.text_field :expected_status, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :expected_body %>
+        ( regex )
+        <%= f.text_field :expected_body, :class => 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_field :description, :class => 'form-control' %>
+      </div>
+      <br>
+      <div class="actions form-group">
+        <%= f.submit class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>

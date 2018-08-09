@@ -1,0 +1,66 @@
+<div class="col-md-12">
+  <div class="agent-settings">
+    <ul class="nav nav-pills nav-stacked">
+      <h2>
+        <%= @project.title %> # <%= @scenario.title %> Details
+      </h2>
+      <hr>
+      <p>
+        <b>Last Check:</b>
+        <%= @scenario.updated_at.strftime("%y-%m-%d %k:%M:%S") %>
+      </p>
+      <p>
+        <b>status:</b>
+        <b class="<%= @scenario.status.include?('Pass') ? 'dgg-green' : 'dgg-red' %>" ><%= @scenario.status %></b>
+      </p>
+      <hr>
+      <p>
+        <b>Url:</b>
+        <%= @scenario.url %>
+      </p>
+      <p>
+        <b>Headers:</b>
+        <%= @scenario.headers %>
+      </p>
+      <p>
+        <b>Method:</b>
+        <%= @scenario.method %>
+      </p>
+      <p>
+        <b>Body:</b>
+        <%= @scenario.body %>
+      </p>
+      <p>
+        <b>Cookies:</b>
+        <%= @scenario.cookies %>
+      </p>
+      <p>
+        <b>expected_status:</b>
+        <%= @scenario.expected_status %>
+      </p>
+      <p>
+        <b>expected_body:</b>
+        <%= @scenario.expected_body %>
+      </p>
+      <p>
+        <b>Description:</b>
+        <%= @scenario.description %>
+      </p>
+    </ul>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group">
+        <%= link_to icon_tag('glyphicon-chevron-left') + ' Back', project_scenarios_path, class: "btn btn-default" %>
+        <% if policy(current_user).edit? %>
+          <%= link_to icon_tag('glyphicon-asterisk') + ' Edit', edit_project_scenario_path(@project, @scenario), class: "btn btn-default" %>
+        <% end %>
+        <% if false %>
+          <%= link_to icon_tag('glyphicon-time') + ' Active', run_project_scenario_path(@project, @scenario), class: "btn btn-default" %>
+        <% end %>
+        <%= link_to icon_tag('glyphicon-triangle-right') + ' Run', run_project_scenario_path(@project, @scenario), class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+</div>

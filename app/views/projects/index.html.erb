@@ -1,0 +1,19 @@
+<tbody>
+  <div class="col-md-12">
+    <div class="page-header">
+      <h2>Projects</h2>
+    </div>
+    <%= render 'projects/table', projects: @projects%>
+  </div>
+
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="btn-group">
+      <% if policy(current_user).new? %>
+        <%= link_to icon_tag('glyphicon-plus') + ' New Project', new_project_path, class: "btn btn-default" %>
+      <% end %>
+      <%= link_to icon_tag('glyphicon-refresh') + ' Run All Projects', regres_projects_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
